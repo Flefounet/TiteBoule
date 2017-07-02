@@ -17,15 +17,23 @@ public class PlayerController : MonoBehaviour
     public Text winText;
 
 
+
     private GameObject[] collectibleArrayList;
 
     //init creation of rigidbody
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+       
         count = 0;
         SetCountText();
         winText.text = "";
+
+        //hiding next level button at initialisation
+
+        GameObject.Find("NextLevelButton").GetComponent<Button>().enabled = false;
+        GameObject.Find("NextLevelButton").transform.localScale = new Vector3(0, 0, 0);
+
     }
 
     //update at each physic interaction
@@ -74,9 +82,14 @@ public class PlayerController : MonoBehaviour
         {
             //And then, the win text is modified to show the string defined below.
             winText.text = "Bravo Didou";
-
+            //NExt level button activation and unhiding.
+            GameObject.Find("NextLevelButton").GetComponent<Button>().enabled = true;
+            GameObject.Find("NextLevelButton").transform.localScale = new Vector3(1, 1, 1);
         }
     }
+
+
+
 
 }
 
